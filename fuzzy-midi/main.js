@@ -7,15 +7,22 @@ function tocaSom (idElemento) {
 const listaDeTeclas = document.querySelectorAll('.tecla'); // O querySelectorAll é uma funcionalidade do JavaScript que busca todos os elementos
 
 
-let i = 0;
-//enquanto
-while (i < listaDeTeclas.length) {
 
-    listaDeTeclas[i].onclick = function () { //funcoes anonimas
-        tocaSom('#som_tecla_pom')
+//enquanto
+for (let i = 0; i < listaDeTeclas.length; i++) {
+    
+    const tecla = listaDeTeclas[i]//para tornar o codigo mais legivel
+    const instrumento = tecla.classList[1] //class list para acessar todos os botoes/teclas do index
+
+    //template string
+    const idAudio = `#som_${instrumento}` //faz tocar todos os sons
+
+    console.log(instrumento)
+    tecla.onclick = function () { //funcoes anonimas
+        tocaSom(idAudio)
     }   //Foi necessário usar o while como estrutura de repetição para auxiliar o acesso a cada elemento dentro da lista de teclas, podendo aplicar a rotina de associar uma função no atributo onclick de cada um destes elementos.
     
-    i++
+    
     console.log(i)
 
 }
