@@ -1,6 +1,12 @@
-function tocaSom (idElemento) {
-    
-    document.querySelector(idElemento).play();
+function tocaSom (seletorAudio) {
+    const elemento = document.querySelector(seletorAudio)
+
+    if (elemento != null && elemento.localName == 'audio') {        //Validacao: garante que somente elementos de áudio sejam reproduzidos quando o usuário interagir com eles. Se o elemento for null ou não for um elemento de áudio, a reprodução não ocorre
+        elemento.play();
+    }
+    else {
+        alert('Elemento não encontrado ou seletor inválido')
+    }
 }
 
 //document.querySelector('.tecla_pom').onclick = tocaSomPom; // se dentro de um arquivo .js queremos guardar uma função em um atributo onclick, precisamos retirar esses parênteses, porque só assim se ele vai guardar dentro do onclick a referência, esse nome da função e não vai necessariamente executá-la no mesmo momento em que ela é guardada. Isso tem relação com a ordem de execução do código JavaScript.
@@ -23,7 +29,19 @@ for (let i = 0; i < listaDeTeclas.length; i++) {
     }   //Foi necessário usar o while como estrutura de repetição para auxiliar o acesso a cada elemento dentro da lista de teclas, podendo aplicar a rotina de associar uma função no atributo onclick de cada um destes elementos.
     
     
-    console.log(i)
+  tecla.onkeydown = function (e) { 
 
+    console.log(e.code == 'Enter')
+
+    if(e.code === 'Space' || e.code === 'Enter' ) { 
+    tecla.classList.add('ativa');
+    }
+    
+  }
+
+  tecla.onkeyup = function () {
+    tecla.classList.remove('ativa');
+
+  }
 }
 
